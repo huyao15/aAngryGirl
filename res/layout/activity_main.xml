@@ -1,0 +1,62 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    style="@style/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity" >
+
+    <RelativeLayout
+        android:id="@+id/layout_calendar_month"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_alignParentTop="true" >
+
+        <TextView
+            android:id="@+id/textview_pre_month"
+            style="@style/textview_modify_month"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="30dp"
+            android:background="@drawable/button_pre" />
+
+        <TextView
+            android:id="@+id/textview_calendar_month"
+            style="@style/textview_calendar_month"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_centerInParent="true" />
+
+        <TextView
+            android:id="@+id/textview_post_month"
+            style="@style/textview_modify_month"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="30dp"
+            android:background="@drawable/button_next" />
+    </RelativeLayout>
+
+    <GridView
+        android:id="@+id/gridview_calendar_week"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/layout_calendar_month"
+        android:horizontalSpacing="2dp"
+        android:numColumns="7"
+        android:verticalSpacing="1dp" >
+    </GridView>
+
+    <GridView
+        android:id="@+id/gridview_calendar_day"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/gridview_calendar_week"
+        android:horizontalSpacing="2dp"
+        android:numColumns="7"
+        android:verticalSpacing="2dp" >
+    </GridView>
+
+</RelativeLayout>
