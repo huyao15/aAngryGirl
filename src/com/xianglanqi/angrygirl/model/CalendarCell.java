@@ -1,105 +1,119 @@
 package com.xianglanqi.angrygirl.model;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class CalendarCell {
+public class CalendarCell implements Serializable {
 
-    private int year;
+	private static final long serialVersionUID = -626339171749981413L;
 
-    private int month;
+	private int year;
 
-    private int day;
+	private int month;
 
-    private Date updatedTime;
+	private int day;
 
-    private boolean canChange = false;
-    
-    private boolean isToday;
+	private Date updatedTime;
 
-    private String text;
+	private boolean canChange = false;
 
-    private CellType cellType;
+	private boolean isToday;
 
-    private Mood mood = Mood.UNKNOWN;
+	private String text;
 
-    public CalendarCell(int year, int month, int day, String text, CellType cellType) {
-        this.year = year;
-        this.month = month;
-        this.day = day;
-        this.text = text;
-        this.setCellType(cellType);
-    }
+	private CellType cellType;
 
-    public int getYear() {
-        return year;
-    }
+	private Mood mood = Mood.UNKNOWN;
+	
+	private String description = "";
 
-    public void setYear(int year) {
-        this.year = year;
-    }
+	public CalendarCell(int year, int month, int day, String text,
+			CellType cellType) {
+		this.year = year;
+		this.month = month;
+		this.day = day;
+		this.text = text;
+		this.setCellType(cellType);
+	}
 
-    public int getMonth() {
-        return month;
-    }
+	public int getYear() {
+		return year;
+	}
 
-    public void setMonth(int month) {
-        this.month = month;
-    }
+	public void setYear(int year) {
+		this.year = year;
+	}
 
-    public int getDay() {
-        return day;
-    }
+	public int getMonth() {
+		return month;
+	}
 
-    public void setDay(int day) {
-        this.day = day;
-    }
+	public void setMonth(int month) {
+		this.month = month;
+	}
 
-    public String getText() {
-        return text;
-    }
+	public int getDay() {
+		return day;
+	}
 
-    public void setText(String text) {
-        this.text = text;
-    }
+	public void setDay(int day) {
+		this.day = day;
+	}
 
-    public Mood getMood() {
-        return mood;
-    }
+	public String getText() {
+		return text;
+	}
 
-    public void setMood(Mood mood) {
-        this.mood = mood;
-    }
+	public void setText(String text) {
+		this.text = text;
+	}
 
-    public CellType getCellType() {
-        return cellType;
-    }
+	public Mood getMood() {
+		return mood;
+	}
 
-    public void setCellType(CellType cellType) {
-        this.cellType = cellType;
-    }
+	public void setMood(Mood mood) {
+		this.mood = mood;
+	}
 
-    public Date getUpdatedTime() {
-        return updatedTime;
-    }
+	public CellType getCellType() {
+		return cellType;
+	}
 
-    public void setUpdatedTime(Date updatedTime) {
-        this.updatedTime = updatedTime;
-    }
+	public void setCellType(CellType cellType) {
+		this.cellType = cellType;
+	}
 
-    public boolean isCanChange() {
-        return canChange;
-    }
+	public Date getUpdatedTime() {
+		return updatedTime;
+	}
 
-    public void setCanChange(boolean canChange) {
-        this.canChange = canChange;
-    }
+	public void setUpdatedTime(Date updatedTime) {
+		this.updatedTime = updatedTime;
+	}
 
-    public boolean isToday() {
-        return isToday;
-    }
+	public boolean isCanChange() {
+		return canChange;
+	}
 
-    public void setToday(boolean isToday) {
-        this.isToday = isToday;
-    }
+	public void setCanChange(boolean canChange) {
+		this.canChange = canChange;
+	}
+
+	public boolean isToday() {
+		return isToday;
+	}
+
+	public void setToday(boolean isToday) {
+		this.isToday = isToday;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
 
 }

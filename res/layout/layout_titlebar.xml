@@ -1,23 +1,34 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/titlebar"
     android:layout_width="match_parent"
     android:layout_height="match_parent" >
 
     <TextView
-        android:id="@+id/textview_title"
-        style="@style/textview_title"
+        android:id="@+id/textview_pre_month"
+        style="@style/textview_modify_month"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:text="@string/app_name" />
+        android:layout_alignParentLeft="true"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="30dp"
+        android:background="@drawable/button_pre" />
 
-    <Button
-        android:id="@+id/button_share"
-        android:layout_width="35dp"
-        android:layout_height="35dp"
+    <TextView
+        android:id="@+id/textview_calendar_month"
+        style="@style/textview_calendar_month"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_centerInParent="true" />
+
+    <TextView
+        android:id="@+id/textview_post_month"
+        style="@style/textview_modify_month"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
         android:layout_centerVertical="true"
         android:layout_marginRight="30dp"
-        android:background="@drawable/share_to_time_line_icon" />
+        android:background="@drawable/button_next" />
 
 </RelativeLayout>

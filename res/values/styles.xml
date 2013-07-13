@@ -5,12 +5,7 @@
     <!-- Application theme. -->
     <style name="AppTheme" parent="AppBaseTheme"></style>
 
-    <style name="titlebar" parent="android:Theme">
-        <item name="android:windowTitleSize">50dp</item>
-        <item name="android:windowTitleBackgroundStyle">@style/CustomWindowTitleBackground</item>
-    </style>
-
-    <style name="CustomWindowTitleBackground">
+    <style name="titlebar">
         <item name="android:background">#222222</item>
     </style>
 
@@ -42,11 +37,30 @@
 
     <style name="textview_calendar_month">
         <item name="android:textSize">24sp</item>
-        <item name="android:textColor">#333333</item>
+        <item name="android:textColor">#FFFFFF</item>
         <item name="android:gravity">center</item>
     </style>
 
-    <style name="textview_modify_month">
+    <style name="textview_modify_month"></style>
+
+    <style name="button_share_to_timeline">
+        <item name="android:paddingLeft">10dp</item>
+        <item name="android:paddingRight">10dp</item>
+        <item name="android:textSize">20sp</item>
+    </style>
+
+    <style name="textview_calendar_day_description">
+        <item name="android:padding">5dp</item>
+    </style>
+
+    <style name="button_edit">
+        <item name="android:width">50dp</item>
+        <item name="android:height">30dp</item>
+    </style>
+
+    <style name="textview_day_title">
+        <item name="android:textSize">18sp</item>
+        <item name="android:padding">5dp</item>
     </style>
 
 </resources>

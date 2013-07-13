@@ -1,15 +1,15 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    style="@style/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".MainActivity" >
 
     <RelativeLayout
-        android:id="@+id/layout_calendar_month"
+        android:id="@+id/layout_titlebar"
+        style="@style/titlebar"
         android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:layout_alignParentTop="true" >
+        android:layout_height="50dp" >
 
         <TextView
             android:id="@+id/textview_pre_month"
@@ -39,24 +39,46 @@
             android:background="@drawable/button_next" />
     </RelativeLayout>
 
-    <GridView
-        android:id="@+id/gridview_calendar_week"
+    <RelativeLayout
+        style="@style/main"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/layout_calendar_month"
-        android:horizontalSpacing="2dp"
-        android:numColumns="7"
-        android:verticalSpacing="1dp" >
-    </GridView>
+        android:layout_height="match_parent" >
 
-    <GridView
-        android:id="@+id/gridview_calendar_day"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_below="@id/gridview_calendar_week"
-        android:horizontalSpacing="2dp"
-        android:numColumns="7"
-        android:verticalSpacing="2dp" >
-    </GridView>
+        <GridView
+            android:id="@+id/gridview_calendar_week"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:horizontalSpacing="2dp"
+            android:numColumns="7"
+            android:verticalSpacing="1dp" >
+        </GridView>
 
-</RelativeLayout>
+        <GridView
+            android:id="@+id/gridview_calendar_day"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/gridview_calendar_week"
+            android:horizontalSpacing="2dp"
+            android:numColumns="7"
+            android:verticalSpacing="2dp" >
+        </GridView>
+
+        <Button
+            android:id="@+id/button_share_to_timeline"
+            style="@style/button_share_to_timeline"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:text="@string/text_share_to_timeline" />
+
+        <TextView
+            android:id="@+id/textview_day_description"
+            style="@style/textview_calendar_day_description"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_above="@id/button_share_to_timeline"
+            android:layout_below="@id/gridview_calendar_day" />
+    </RelativeLayout>
+
+</LinearLayout>
