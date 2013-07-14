@@ -93,6 +93,8 @@ public class MainActivity extends Activity implements CalendarDayObserver {
 
 				@Override
 				public void onClick(View arg0) {
+					MainActivity.this.textViewCalendarDayDescription.setVisibility(View.INVISIBLE);
+					MainActivity.this.buttonShareToTimeline.setVisibility(View.INVISIBLE);
 					shotscreenAndSend();
 				}
 			};
@@ -121,6 +123,7 @@ public class MainActivity extends Activity implements CalendarDayObserver {
 		super.onResume();
 		changeMonth();
 
+		this.buttonShareToTimeline.setVisibility(View.VISIBLE);
 		MobclickAgent.onResume(this);
 		CalendarData.getIntance().registObserver(this);
 	}
@@ -158,7 +161,7 @@ public class MainActivity extends Activity implements CalendarDayObserver {
 		view.setDrawingCacheEnabled(true);// 允许当前窗口保存缓存信息，这样getDrawingCache()方法才会返回一个Bitmap
 		Bitmap bitmap = Bitmap.createBitmap(view.getDrawingCache());
 
-		WXAdapter.getInstance().sendImageToTimeline("哈哈哈", bitmap);
+		WXAdapter.getInstance().sendImageToTimeline("", bitmap);
 
 		if (!bitmap.isRecycled()) {
 			bitmap.recycle();

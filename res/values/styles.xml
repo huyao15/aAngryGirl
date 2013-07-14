@@ -57,7 +57,6 @@
     <style name="button_edit">
         <item name="android:width">50dp</item>
         <item name="android:height">30dp</item>
-        <item name="android:background">@drawable/btn_edit</item>
     </style>
 
     <style name="textview_day_title">
