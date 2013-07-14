@@ -19,94 +19,91 @@ import com.xianglanqi.angrygirl.model.Mood;
 
 public class CalendarDayAdapter extends BaseAdapter {
 
-	private LayoutInflater inflater;
+    private LayoutInflater inflater;
 
-	private CalendarDB calendarDB;
-	
-	private CalendarCell lastCell;
+    private CalendarDB calendarDB;
 
-	public CalendarDayAdapter(Context context) {
-		this.inflater = LayoutInflater.from(context);
-		this.calendarDB = new CalendarDB(context);
-	}
+    private CalendarCell lastCell;
 
-	@Override
-	public int getCount() {
-		return CalendarData.getIntance().getCount();
-	}
+    public CalendarDayAdapter(Context context) {
+        this.inflater = LayoutInflater.from(context);
+        this.calendarDB = new CalendarDB(context);
+    }
 
-	@Override
-	public Object getItem(int arg0) {
-		return null;
-	}
+    @Override
+    public int getCount() {
+        return CalendarData.getIntance().getCount();
+    }
 
-	@Override
-	public long getItemId(int arg0) {
-		return arg0;
-	}
+    @Override
+    public Object getItem(int arg0) {
+        return null;
+    }
 
-	@Override
-	public View getView(int pos, View convertView, ViewGroup parent) {
-		final CalendarCell cell = CalendarData.getIntance().getCell(pos + 7);
-		return loadCalendarDay(pos, convertView, cell);
-	}
+    @Override
+    public long getItemId(int arg0) {
+        return arg0;
+    }
 
-	private View loadCalendarDay(int pos, View view, CalendarCell cell) {
-		final View convertView = inflater.inflate(R.layout.layout_calendar_day,
-				null);
-		final TextView tvDay = (TextView) convertView
-				.findViewById(R.id.textview_calendar_day);
-		// 显示什么表情
-		if (cell.getMood() != Mood.UNKNOWN) {
-			tvDay.setText("");
-			tvDay.setBackgroundResource(cell.getMood().getResource());
-		} else {
-			if (cell.isToday()) {
-				tvDay.setBackgroundResource(R.drawable.bg_click_here);
-			} else {
-				tvDay.setText(cell.getText());
-			}
-		}
-		tvDay.setTag(cell);
+    @Override
+    public View getView(int pos, View convertView, ViewGroup parent) {
+        final CalendarCell cell = CalendarData.getIntance().getCell(pos + 7);
+        return loadCalendarDay(pos, convertView, cell);
+    }
 
-		// 是否可见
-		if (cell.getCellType() == CellType.CELL_DAY) {
-			convertView.setVisibility(View.VISIBLE);
+    private View loadCalendarDay(int pos, View view, CalendarCell cell) {
+        final View convertView = inflater.inflate(R.layout.layout_calendar_day, null);
+        final TextView tvDay = (TextView) convertView.findViewById(R.id.textview_calendar_day);
+        // 显示什么表情
+        if (cell.getMood() != Mood.UNKNOWN) {
+            tvDay.setText("");
+            tvDay.setBackgroundResource(cell.getMood().getResource());
+        } else {
+            if (cell.isToday()) {
+                tvDay.setBackgroundResource(R.drawable.bg_click_here);
+            } else {
+                tvDay.setText(cell.getText());
+            }
+        }
+        tvDay.setTag(cell);
 
-		} else {
-			convertView.setVisibility(View.INVISIBLE);
-			tvDay.setEnabled(false);
-			tvDay.setBackgroundResource(R.color.textview_calendar_day_unenable);
-		}
+        // 是否可见
+        if (cell.getCellType() == CellType.CELL_DAY) {
+            convertView.setVisibility(View.VISIBLE);
 
-		tvDay.setOnClickListener(new OnClickListener() {
+        } else {
+            convertView.setVisibility(View.INVISIBLE);
+            tvDay.setEnabled(false);
+            tvDay.setBackgroundResource(R.color.textview_calendar_day_unenable);
+        }
 
-			@Override
-			public void onClick(View view) {
-				TextView tvDay = (TextView) view;
-				final CalendarCell cell = (CalendarCell) tvDay.getTag();
+        tvDay.setOnClickListener(new OnClickListener() {
 
-				//在不同天之间切换的时候，不做表情的改变；只有连续点同一天的时候，才改表情
-				if (!cell.isCanChange() || (null != lastCell && cell != lastCell)) {
-					// return;
+            @Override
+            public void onClick(View view) {
+                TextView tvDay = (TextView) view;
+                final CalendarCell cell = (CalendarCell) tvDay.getTag();
 
-				} else {
-					Mood mood = Mood.getMood((cell.getMood().getIndex() + 1)
-							% Mood.NUMBER);
-					cell.setMood(mood);
-					cell.setUpdatedTime(new Date());
-					calendarDB.changeMood(cell);
+                // 在不同天之间切换的时候，不做表情的改变；只有连续点同一天的时候，才改表情
+                if (!cell.isCanChange() || (cell != lastCell && cell.getMood() != Mood.UNKNOWN)) {
+                    // return;
 
-					tvDay.setText("");
-					tvDay.setBackgroundResource(mood.getResource());
-				}
+                } else {
+                    Mood mood = Mood.getMood((cell.getMood().getIndex() + 1) % Mood.NUMBER);
+                    cell.setMood(mood);
+                    cell.setUpdatedTime(new Date());
+                    calendarDB.changeMood(cell);
 
-				lastCell = cell;
-				CalendarData.getIntance().dayChanged(cell);
-			}
-		});
+                    tvDay.setText("");
+                    tvDay.setBackgroundResource(mood.getResource());
+                }
 
-		return convertView;
-	}
+                lastCell = cell;
+                CalendarData.getIntance().dayChanged(cell);
+            }
+        });
+
+        return convertView;
+    }
 
 }
