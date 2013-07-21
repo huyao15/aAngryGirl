@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+    <ImageView
+        android:id="@+id/menu_background"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:contentDescription="@string/app_name"
+        android:scaleType="centerCrop"
+        android:src="@drawable/bg_default" />
+
+    <ListView
+        android:id="@+id/listview_menulist"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/bg_menu"
+        android:cacheColorHint="@null"
+        android:listSelector="@null"
+        android:scrollbars="none" >
+    </ListView>
+
+</FrameLayout>

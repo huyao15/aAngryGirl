@@ -8,6 +8,6 @@
         style="@style/textview_calendar_week"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:gravity="center|center_vertical" />
+        android:gravity="center_vertical|left" />
 
 </com.xianglanqi.angrygirl.view.CalendarWeekCellLayout>

@@ -24,7 +24,7 @@ public class WXAdapter {
 
     private static final String APP_ID = "wx62b2217684d2e7be";
 
-    //private static final String APP_KEY = "84ba6858160d5a7e251c4825b8755cfb";
+    // private static final String APP_KEY = "84ba6858160d5a7e251c4825b8755cfb";
 
     private IWXAPI api;
 

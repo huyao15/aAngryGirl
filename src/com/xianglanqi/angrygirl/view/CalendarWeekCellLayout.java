@@ -12,13 +12,21 @@ public class CalendarWeekCellLayout extends RelativeLayout {
 
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
-        super.onMeasure(widthMeasureSpec, widthMeasureSpec * 3 / 5);
-
-        measureChildren(widthMeasureSpec, widthMeasureSpec * 3 / 5);
-
+        float scale = 0.4f;
         int width = MeasureSpec.getSize(widthMeasureSpec);
-        int height = width * 3 / 5;
+        int height = (int) (width * scale);
+        int mode = MeasureSpec.getMode(widthMeasureSpec);
+        heightMeasureSpec = MeasureSpec.makeMeasureSpec(height, mode);
+
+        super.onMeasure(widthMeasureSpec, heightMeasureSpec);
+
+        measureChildren(widthMeasureSpec, heightMeasureSpec);
+        // Log.d("hy", String.format("onMeasure: (%d,%d)", widthMeasureSpec,
+        // heightMeasureSpec));
 
         setMeasuredDimension(width, height);
+        // Log.d("hy", String.format("setMeasuredDimension: (%d,%d)", width,
+        // height));
+
     }
 }

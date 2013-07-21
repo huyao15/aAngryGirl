@@ -4,8 +4,8 @@
     <string name="app_name">老婆的心情</string>
     <string name="text_share_to_timeline">分享到朋友圈</string>
     <string name="text_day_description_hint">今天你肿么她了</string>
-
     <string name="textview_edit_title">记录心情</string>
     <string name="button_cancel">取消</string>
     <string name="button_save">保存</string>
+
 </resources>

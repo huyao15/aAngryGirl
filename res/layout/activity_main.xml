@@ -1,83 +1,105 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     tools:context=".MainActivity" >
 
-    <RelativeLayout
-        android:id="@+id/layout_titlebar"
-        style="@style/titlebar"
+    <ImageView
+        android:id="@+id/main_background"
         android:layout_width="match_parent"
-        android:layout_height="50dp" >
+        android:layout_height="match_parent"
+        android:contentDescription="@string/app_name"
+        android:scaleType="centerCrop"
+        android:src="@drawable/bg_default" />
 
-        <TextView
-            android:id="@+id/textview_pre_month"
-            style="@style/textview_modify_month"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:layout_centerVertical="true"
-            android:layout_marginLeft="30dp"
-            android:background="@drawable/button_pre" />
-
-        <TextView
-            android:id="@+id/textview_calendar_month"
-            style="@style/textview_calendar_month"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_centerInParent="true" />
-
-        <TextView
-            android:id="@+id/textview_post_month"
-            style="@style/textview_modify_month"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"
-            android:layout_marginRight="30dp"
-            android:background="@drawable/button_next" />
-    </RelativeLayout>
-
-    <RelativeLayout
-        style="@style/main"
+    <LinearLayout
+        android:id="@+id/layout_main"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" >
+        android:layout_height="match_parent"
+        android:orientation="vertical" >
 
-        <GridView
-            android:id="@+id/gridview_calendar_week"
+        <RelativeLayout
+            android:id="@+id/layout_titlebar"
+            style="@style/titlebar"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
-            android:horizontalSpacing="2dp"
-            android:numColumns="7"
-            android:verticalSpacing="1dp" >
-        </GridView>
+            android:layout_height="50dp" >
 
-        <GridView
-            android:id="@+id/gridview_calendar_day"
+            <ImageView
+                android:id="@+id/imageview_more"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="10dp"
+                android:background="@drawable/bg_more"
+                android:contentDescription="@string/app_name"
+                android:scaleType="centerCrop"
+                android:src="@drawable/icon_more" />
+
+            <TextView
+                android:id="@+id/textview_calendar_month"
+                style="@style/textview_calendar_month"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_centerInParent="true" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            style="@style/titlebar"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/gridview_calendar_week"
-            android:horizontalSpacing="2dp"
-            android:numColumns="7"
-            android:verticalSpacing="2dp" >
-        </GridView>
+            android:layout_height="match_parent" >
 
-        <Button
-            android:id="@+id/button_share_to_timeline"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:text="@string/text_share_to_timeline" />
+            <GridView
+                android:id="@+id/gridview_calendar_week"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_alignParentTop="true"
+                android:horizontalSpacing="1dp"
+                android:listSelector="@null"
+                android:numColumns="7"
+                android:paddingBottom="3dp"
+                android:paddingLeft="1dp"
+                android:paddingRight="1dp"
+                android:paddingTop="2dp" >
+            </GridView>
 
-        <TextView
-            android:id="@+id/textview_day_description"
-            style="@style/textview_calendar_day_description"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_above="@id/button_share_to_timeline"
-            android:layout_below="@id/gridview_calendar_day" />
-    </RelativeLayout>
+            <TextView
+                android:id="@+id/textview_spliter"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_below="@id/gridview_calendar_week"
+                android:background="@color/titlebar" />
 
-</LinearLayout>
+            <GridView
+                android:id="@+id/gridview_calendar_day"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/textview_spliter"
+                android:background="@null"
+                android:horizontalSpacing="1dp"
+                android:listSelector="@null"
+                android:numColumns="7"
+                android:padding="1dp"
+                android:scrollbars="none"
+                android:verticalSpacing="1dp" >
+            </GridView>
+
+            <Button
+                android:id="@+id/button_share_to_timeline"
+                style="@style/button_share_to_timeline"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:text="@string/text_share_to_timeline" />
+
+            <TextView
+                android:id="@+id/textview_day_description"
+                style="@style/textview_calendar_day_description"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_above="@id/button_share_to_timeline"
+                android:layout_below="@id/gridview_calendar_day" />
+        </RelativeLayout>
+    </LinearLayout>
+
+</FrameLayout>

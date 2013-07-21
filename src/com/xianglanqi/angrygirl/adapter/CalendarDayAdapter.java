@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.xianglanqi.angrygirl.R;
@@ -52,37 +53,40 @@ public class CalendarDayAdapter extends BaseAdapter {
     }
 
     private View loadCalendarDay(int pos, View view, CalendarCell cell) {
-        final View convertView = inflater.inflate(R.layout.layout_calendar_day, null);
-        final TextView tvDay = (TextView) convertView.findViewById(R.id.textview_calendar_day);
-        // 显示什么表情
-        if (cell.getMood() != Mood.UNKNOWN) {
-            tvDay.setText("");
-            tvDay.setBackgroundResource(cell.getMood().getResource());
-        } else {
-            if (cell.isToday()) {
-                tvDay.setBackgroundResource(R.drawable.bg_click_here);
-            } else {
-                tvDay.setText(cell.getText());
-            }
-        }
-        tvDay.setTag(cell);
 
+        int resourceId = 0;
         // 是否可见
         if (cell.getCellType() == CellType.CELL_DAY) {
-            convertView.setVisibility(View.VISIBLE);
+            resourceId = R.layout.layout_calendar_day;
 
         } else {
-            convertView.setVisibility(View.INVISIBLE);
-            tvDay.setEnabled(false);
-            tvDay.setBackgroundResource(R.color.textview_calendar_day_unenable);
+            resourceId = R.layout.layout_calendar_day_unenable;
+        }
+        final View convertView = inflater.inflate(resourceId, null);
+        convertView.setTag(cell);
+
+        final TextView tvDay = (TextView) convertView.findViewById(R.id.textview_calendar_day);
+        final ImageView imgDay = (ImageView) convertView.findViewById(R.id.imageview_calendar_day);
+        tvDay.setText(cell.getText());
+
+        // 显示什么表情
+        if (cell.getMood() != Mood.UNKNOWN) {
+            imgDay.setImageResource(cell.getMood().getResource());
+        } else {
+            if (cell.isToday()) {
+                imgDay.setImageResource(R.drawable.bg_click_here);
+            } else {
+            }
         }
 
-        tvDay.setOnClickListener(new OnClickListener() {
+        convertView.setOnClickListener(new OnClickListener() {
 
             @Override
             public void onClick(View view) {
-                TextView tvDay = (TextView) view;
-                final CalendarCell cell = (CalendarCell) tvDay.getTag();
+                final CalendarCell cell = (CalendarCell) view.getTag();
+                if (cell.getCellType() != CellType.CELL_DAY) {
+                    return;
+                }
 
                 // 在不同天之间切换的时候，不做表情的改变；只有连续点同一天的时候，才改表情
                 if (!cell.isCanChange() || (cell != lastCell && cell.getMood() != Mood.UNKNOWN)) {
@@ -94,8 +98,7 @@ public class CalendarDayAdapter extends BaseAdapter {
                     cell.setUpdatedTime(new Date());
                     calendarDB.changeMood(cell);
 
-                    tvDay.setText("");
-                    tvDay.setBackgroundResource(mood.getResource());
+                    imgDay.setImageResource(mood.getResource());
                 }
 
                 lastCell = cell;

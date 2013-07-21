@@ -6,42 +6,50 @@
     <style name="AppTheme" parent="AppBaseTheme"></style>
 
     <style name="titlebar">
-        <item name="android:background">#222222</item>
+        <item name="android:background">@color/titlebar</item>
     </style>
 
     <style name="main">
-        <item name="android:background">#FEFFDB</item>
-        <item name="android:padding">10dp</item>
+        <item name="android:background">@color/main</item>
+        <item name="android:padding">1dp</item>
+    </style>
+
+    <style name="edit">
+        <item name="android:background">@color/main</item>
+        <item name="android:padding">5dp</item>
+    </style>
+
+    <style name="edittext_day_description">
+        <item name="android:background">@color/bg_edit</item>
+        <item name="android:layout_marginTop">5dp</item>
+        <item name="android:padding">5dp</item>
     </style>
 
     <style name="textview_title">
         <item name="android:textSize">24sp</item>
-        <item name="android:textColor">#FFFFFF</item>
+        <item name="android:textColor">@color/white</item>
         <item name="android:gravity">center</item>
     </style>
 
     <style name="textview_calendar_day">
-        <item name="android:background">#BBBBBB</item>
-        <item name="android:textSize">18sp</item>
-        <item name="android:textColor">#FFFFFF</item>
-        <item name="android:gravity">center_horizontal|center_vertical</item>
+        <item name="android:textSize">12sp</item>
+        <item name="android:textColor">@color/day_title</item>
     </style>
 
-    <color name="textview_calendar_day_unenable">#999999</color>
+    <style name="textview_calendar_day_unenable" parent="@style/textview_calendar_day">
+        <item name="android:textColor">@color/day_unenable_title</item>
+    </style>
 
     <style name="textview_calendar_week">
-        <item name="android:background">#666666</item>
-        <item name="android:textSize">18sp</item>
-        <item name="android:textColor">#FFFFFF</item>
+        <item name="android:textSize">15sp</item>
+        <item name="android:textColor">@color/bg_cell</item>
     </style>
 
     <style name="textview_calendar_month">
         <item name="android:textSize">24sp</item>
-        <item name="android:textColor">#FFFFFF</item>
+        <item name="android:textColor">@color/white</item>
         <item name="android:gravity">center</item>
     </style>
-
-    <style name="textview_modify_month"></style>
 
     <style name="button_share_to_timeline">
         <item name="android:paddingLeft">10dp</item>
@@ -57,11 +65,47 @@
     <style name="button_edit">
         <item name="android:width">50dp</item>
         <item name="android:height">30dp</item>
+        <item name="android:background">@drawable/bg_more</item>
+        <item name="android:textColor">@color/white</item>
     </style>
 
     <style name="textview_day_title">
         <item name="android:textSize">18sp</item>
         <item name="android:padding">5dp</item>
+    </style>
+
+    <style name="layout_menucell_year">
+        <item name="android:padding">5dp</item>
+        <item name="android:background">@color/bg_menu_parent</item>
+        <item name="android:gravity">center_vertical</item>
+    </style>
+
+    <style name="textview_menucell_year">
+        <item name="android:paddingLeft">5dp</item>
+        <item name="android:textSize">20sp</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:gravity">center_vertical</item>
+    </style>
+
+    <style name="textview_menucell_month">
+        <item name="android:padding">5dp</item>
+    </style>
+
+    <style name="textview_menu_month_text">
+        <item name="android:textSize">16sp</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:gravity">center</item>
+    </style>
+
+    <style name="button_share_to_timeline">
+        <item name="android:background">@drawable/bg_share</item>
+        <item name="android:layout_marginTop">5dp</item>
+        <item name="android:layout_marginBottom">5dp</item>
+        <item name="android:layout_marginLeft">10dp</item>
+        <item name="android:layout_marginRight">10dp</item>
+        <item name="android:padding">5dp</item>
+        <item name="android:textSize">20sp</item>
+        <item name="android:textColor">@color/day_title</item>
     </style>
 
 </resources>

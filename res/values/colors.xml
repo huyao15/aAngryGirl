@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <color name="black">#000000</color>
+    <color name="white">#FFFFFF</color>
+    <color name="main">#66222222</color>
+    <color name="titlebar">#99222222</color>
+    <color name="day">#AACCDD</color>
+    <color name="day_title">#EE333333</color>
+    <color name="day_unenable">#DDDDEE</color>
+    <color name="day_unenable_title">#EE888888</color>
+    <color name="bg_cell">#55FFFFFF</color>
+    <color name="bg_menu_parent">#EE222222</color>
+    <color name="bg_menu">#EE222222</color>
+    <color name="bg_more">#66000000</color>
+    <color name="bg_share">#88FFFFFF</color>
+    <color name="bg_edit">#88FFFFFF</color>
+
+</resources>

@@ -12,10 +12,19 @@ public class CalendarDayCellLayout extends RelativeLayout {
 
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
-        super.onMeasure(widthMeasureSpec, widthMeasureSpec);
-
+        float scale = 1.5f;
         int width = MeasureSpec.getSize(widthMeasureSpec);
-        int height = width;
+        int height = (int) (width * scale);
+        int mode = MeasureSpec.getMode(widthMeasureSpec);
+        heightMeasureSpec = MeasureSpec.makeMeasureSpec(height, mode);
+
+        super.onMeasure(widthMeasureSpec, heightMeasureSpec);
+
+        // measureChildren(widthMeasureSpec, heightMeasureSpec);
+        // Log.d("hy", String.format("onMeasure: (%d,%d)", widthMeasureSpec, heightMeasureSpec));
+
         setMeasuredDimension(width, height);
+        // Log.d("hy", String.format("setMeasuredDimension: (%d,%d)", width, height));
+
     }
 }
