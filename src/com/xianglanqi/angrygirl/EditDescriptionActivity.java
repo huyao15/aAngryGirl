@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.xianglanqi.angrygirl.data.CalendarDB;
@@ -64,5 +65,7 @@ public class EditDescriptionActivity extends Activity {
 
         this.dayDescriptionEditText = (EditText) findViewById(R.id.edittext_day_description);
         this.dayDescriptionEditText.setText(cell.getDescription());
+
+        BackgroundUtil.changeBackground(this, new ImageView[] { (ImageView) findViewById(R.id.edit_background) });
     }
 }

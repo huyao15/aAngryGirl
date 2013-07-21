@@ -51,13 +51,6 @@
         <item name="android:gravity">center</item>
     </style>
 
-    <style name="button_share_to_timeline">
-        <item name="android:paddingLeft">10dp</item>
-        <item name="android:paddingRight">10dp</item>
-        <item name="android:textSize">20sp</item>
-        <item name="android:background">@drawable/btn_edit</item>
-    </style>
-
     <style name="textview_calendar_day_description">
         <item name="android:padding">5dp</item>
     </style>
@@ -107,5 +100,5 @@
         <item name="android:textSize">20sp</item>
         <item name="android:textColor">@color/day_title</item>
     </style>
-
+    
 </resources>

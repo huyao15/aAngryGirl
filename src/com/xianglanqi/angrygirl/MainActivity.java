@@ -92,6 +92,7 @@ public class MainActivity extends Activity implements CalendarDayObserver {
             @Override
             public void onItemClick(AdapterView<?> parent, View convenView, int position, long id) {
                 if (position == 0) {
+                    MobclickAgent.onEvent(MainActivity.this, "click_changeBackground");
                     MainActivity.this.menuDrawer.closeMenu(true);
                     Intent i = new Intent(Intent.ACTION_PICK,
                             android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
@@ -220,6 +221,9 @@ public class MainActivity extends Activity implements CalendarDayObserver {
 
     @SuppressWarnings("deprecation")
     private void shotscreenAndSend() {
+
+        MobclickAgent.onEvent(this, "click_share");
+
         View view = getWindow().getDecorView();
         Display display = this.getWindowManager().getDefaultDisplay();
         view.layout(0, 0, display.getWidth(), display.getHeight());
