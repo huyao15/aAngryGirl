@@ -7,5 +7,7 @@
     <string name="textview_edit_title">记录心情</string>
     <string name="button_cancel">取消</string>
     <string name="button_save">保存</string>
+    <string name="md__drawerOpenIndicatorDesc">Close drawer</string>
+    <string name="md__drawerClosedIndicatorDesc">Open drawer</string>
 
 </resources>

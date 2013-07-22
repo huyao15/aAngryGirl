@@ -46,7 +46,7 @@ public class MenuAdapter extends BaseAdapter {
         }
         int minYear = this.calendarDB.getMinYear();
         if (minYear > -1 && minYear < year) {
-            for (int i = year - 1; i >= Math.max(minYear, year - 5); i--) {
+            for (int i = year - 1; i >= Math.max(minYear, year - 2); i--) {
                 for (int j = 12; j > 0; j--) {
                     if (j == 12) {
                         cells.add(new MenuCell(i));
