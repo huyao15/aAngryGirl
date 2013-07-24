@@ -10,15 +10,15 @@ public enum Mood {
 
     /**
      */
-    HAPPY(0, "0001", R.drawable.m1001),
+    HAPPY(0, "0001", R.drawable.happy),
 
     /**
      */
-    SAD(1, "0002", R.drawable.m1002),
+    SAD(1, "0002", R.drawable.sad),
 
     /**
      */
-    ANGRY(2, "0003", R.drawable.m1003);
+    ANGRY(2, "0003", R.drawable.angry);
 
     /**
      */

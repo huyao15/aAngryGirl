@@ -5,21 +5,21 @@
     android:background="@drawable/corner"
     android:padding="1dp" >
 
-    <ImageView
-        android:id="@+id/imageview_calendar_day"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:scaleType="fitEnd"
-        android:alpha="0.75"
-        android:contentDescription="@string/app_name" />
-
     <TextView
         android:id="@+id/textview_calendar_day"
         style="@style/textview_calendar_day"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@id/imageview_calendar_day"
         android:layout_alignParentTop="true" />
+
+    <ImageView
+        android:id="@+id/imageview_calendar_day"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentBottom="true"
+        android:layout_below="@+id/textview_calendar_day"
+        android:alpha="0.75"
+        android:contentDescription="@string/app_name"
+        android:scaleType="fitEnd" />
 
 </com.xianglanqi.angrygirl.view.CalendarDayCellLayout>
