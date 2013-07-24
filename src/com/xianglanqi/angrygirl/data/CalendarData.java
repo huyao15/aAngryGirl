@@ -79,6 +79,12 @@ public class CalendarData {
         }
     }
 
+    public void daySelected(final CalendarCell cell) {
+        for (CalendarDayObserver observer : this.observers) {
+            observer.daySelected(cell);
+        }
+    }
+
     /**
      * 获取这个月一共需要多个格子，包含上个月的末尾，不包含下个月的开头
      * 
@@ -183,6 +189,10 @@ public class CalendarData {
 
         } else if (cal.getTime().before(Calendar.getInstance().getTime()) && cell.getMood() == Mood.UNKNOWN) {
             // 所有之前没有改过的都可以改一次
+            cell.setCanChange(true);
+        }
+        // 修改上面那段代码的设置，把之前的所有都设置为可以改，这个是用户的需求，暂时没想明白
+        if (cal.getTime().before(Calendar.getInstance().getTime())) {
             cell.setCanChange(true);
         }
 

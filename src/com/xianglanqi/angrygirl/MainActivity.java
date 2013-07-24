@@ -248,4 +248,16 @@ public class MainActivity extends Activity implements CalendarDayObserver {
         this.textViewCalendarDayDescription.setText(prefix);
         this.textViewCalendarDayDescription.setTag(cell);
     }
+
+    @Override
+    public void daySelected(CalendarCell cell) {
+        if (cell.getMood() == Mood.UNKNOWN) {
+            return;
+        }
+        this.textViewCalendarDayDescription.setVisibility(View.VISIBLE);
+        String prefix = String.format("[点我] %d年%d月%d日: %s", cell.getYear(), cell.getMonth() + 1, cell.getDay(),
+                cell.getDescription());
+        this.textViewCalendarDayDescription.setText(prefix);
+        this.textViewCalendarDayDescription.setTag(cell);
+    }
 }

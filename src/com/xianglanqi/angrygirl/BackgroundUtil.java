@@ -9,7 +9,7 @@ import android.util.Log;
 import android.widget.ImageView;
 
 public class BackgroundUtil {
-
+    
     public static final int changeBackground(Context context, ImageView[] images) {
         String picPath = context.getSharedPreferences("user_setting", Context.MODE_PRIVATE).getString(
                 "user_background_pic", null);

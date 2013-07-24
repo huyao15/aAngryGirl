@@ -1,11 +1,14 @@
 package com.xianglanqi.angrygirl.adapter;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 import java.util.Map;
 
 import android.content.Context;
+import android.content.res.AssetManager;
+import android.graphics.BitmapFactory;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -126,7 +129,12 @@ public class MenuAdapter extends BaseAdapter {
                 View view = (View) LayoutInflater.from(context).inflate(R.layout.layout_mood, null);
                 ImageView moodPic = (ImageView) view.findViewById(R.id.imageview_mood_pic);
                 TextView moodCount = (TextView) view.findViewById(R.id.textview_mood_count);
-                moodPic.setImageResource(mood.getResource());
+                try {
+                    moodPic.setImageBitmap(BitmapFactory.decodeStream(context.getAssets().open(mood.getCode() + ".png",
+                            AssetManager.ACCESS_STREAMING)));
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
                 moodCount.setText("X" + count);
                 holder.moods.addView(view);
             }

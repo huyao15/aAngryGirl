@@ -40,7 +40,7 @@
             android:value="51dd7a9556240bd40e00a7c6" />
         <meta-data
             android:name="UMENG_CHANNEL"
-            android:value="wandoujia" />
+            android:value="google_play" />
     </application>
 
 </manifest>

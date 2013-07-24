@@ -1,6 +1,10 @@
 package com.xianglanqi.angrygirl;
 
+import java.io.IOException;
+
 import android.app.Activity;
+import android.content.res.AssetManager;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
@@ -21,7 +25,7 @@ public class EditDescriptionActivity extends Activity {
 
     private TextView editTitleTextView;
 
-    private TextView moodTextView;
+    private ImageView moodImageView;
 
     private EditText dayDescriptionEditText;
 
@@ -60,8 +64,13 @@ public class EditDescriptionActivity extends Activity {
         this.editTitleTextView = (TextView) findViewById(R.id.textview_day_title);
         this.editTitleTextView
                 .setText(String.format("%d年%d月%d日: ", cell.getYear(), cell.getMonth() + 1, cell.getDay()));
-        this.moodTextView = (TextView) findViewById(R.id.imageview_day_mood);
-        this.moodTextView.setBackgroundResource(cell.getMood().getResource());
+        this.moodImageView = (ImageView) findViewById(R.id.imageview_day_mood);
+        try {
+            this.moodImageView.setImageBitmap((BitmapFactory.decodeStream(this.getAssets().open(
+                    cell.getMood().getCode() + ".png", AssetManager.ACCESS_STREAMING))));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
         this.dayDescriptionEditText = (EditText) findViewById(R.id.edittext_day_description);
         this.dayDescriptionEditText.setText(cell.getDescription());

@@ -1,11 +1,16 @@
 package com.xianglanqi.angrygirl.adapter;
 
+import java.io.IOException;
 import java.util.Date;
 
 import android.content.Context;
+import android.content.SharedPreferences;
+import android.content.res.AssetManager;
+import android.graphics.BitmapFactory;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.View.OnLongClickListener;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
@@ -20,6 +25,8 @@ import com.xianglanqi.angrygirl.model.Mood;
 
 public class CalendarDayAdapter extends BaseAdapter {
 
+    private Context context;
+
     private LayoutInflater inflater;
 
     private CalendarDB calendarDB;
@@ -29,6 +36,7 @@ public class CalendarDayAdapter extends BaseAdapter {
     public CalendarDayAdapter(Context context) {
         this.inflater = LayoutInflater.from(context);
         this.calendarDB = new CalendarDB(context);
+        this.context = context;
     }
 
     @Override
@@ -71,13 +79,38 @@ public class CalendarDayAdapter extends BaseAdapter {
 
         // 显示什么表情
         if (cell.getMood() != Mood.UNKNOWN) {
-            imgDay.setImageResource(cell.getMood().getResource());
+            try {
+                imgDay.setImageBitmap(BitmapFactory.decodeStream(context.getAssets().open(
+                        cell.getMood().getCode() + ".png", AssetManager.ACCESS_STREAMING)));
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         } else {
             if (cell.isToday()) {
                 imgDay.setImageResource(R.drawable.bg_click_here);
             } else {
             }
         }
+
+        convertView.setLongClickable(true);
+        convertView.setOnLongClickListener(new OnLongClickListener() {
+
+            @Override
+            public boolean onLongClick(View view) {
+                final CalendarCell cell = (CalendarCell) view.getTag();
+                if (cell.getCellType() != CellType.CELL_DAY || !cell.isCanChange()) {
+                    return true;
+                }
+                SharedPreferences sp = context.getSharedPreferences("user_setting", Context.MODE_PRIVATE);
+                String group = Mood.getCurrentGroup(sp);
+                String newGroup = group.equals(Mood.DEFAULT_GROUP) ? Mood.NIU_GROUP : Mood.DEFAULT_GROUP;
+                Mood.setCurrentGroup(sp, newGroup);
+                Mood mood = Mood.getMood(newGroup, 0);
+                changeMood(cell, imgDay, mood);
+                lastCell = cell;
+                return true;
+            }
+        });
 
         convertView.setOnClickListener(new OnClickListener() {
 
@@ -91,22 +124,37 @@ public class CalendarDayAdapter extends BaseAdapter {
                 // 在不同天之间切换的时候，不做表情的改变；只有连续点同一天的时候，才改表情
                 if (!cell.isCanChange() || (cell != lastCell && cell.getMood() != Mood.UNKNOWN)) {
                     // return;
+                    CalendarData.getIntance().daySelected(cell);
 
                 } else {
-                    Mood mood = Mood.getMood((cell.getMood().getIndex() + 1) % Mood.NUMBER);
-                    cell.setMood(mood);
-                    cell.setUpdatedTime(new Date());
-                    calendarDB.changeMood(cell);
-
-                    imgDay.setImageResource(mood.getResource());
+                    String group = Mood.getCurrentGroup(context.getSharedPreferences("user_setting",
+                            Context.MODE_PRIVATE));
+                    Mood mood = Mood.getMood(group, (cell.getMood().getIndex() + 1) % Mood.getCount(group));
+                    changeMood(cell, imgDay, mood);
                 }
-
                 lastCell = cell;
-                CalendarData.getIntance().dayChanged(cell);
+
             }
         });
 
         return convertView;
+    }
+
+    private void changeMood(final CalendarCell cell, final ImageView imgDay, final Mood mood) {
+
+        cell.setMood(mood);
+        cell.setUpdatedTime(new Date());
+        calendarDB.changeMood(cell);
+
+        try {
+            imgDay.setImageBitmap(BitmapFactory.decodeStream(context.getAssets().open(mood.getCode() + ".png",
+                    AssetManager.ACCESS_STREAMING)));
+            CalendarData.getIntance().dayChanged(cell);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
     }
 
 }
